@@ -165,6 +165,10 @@ def main():
         if not parse_serial_packet(data_in):
             continue
 
+        # Since the telem packet was parsed successfully, proceed to write it to the logfile. -LCS
+        with open('/home/pi/flight_data/telem.txt','w') as f:
+            print(FLIGHT_DATA, file=f)
+
         # If the experiment hasn't run yet then check against the start conditions
         # to decide if it should be started. Example start condition is altitude >
         # 20000 ft.
